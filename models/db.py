@@ -13,6 +13,12 @@ class FakeDB():
             raise ValueError(f"Sheep with id {sheep.id} already exists")
         self.data[sheep.id] = sheep
 
+    def delete_sheep(self,id: int):
+        sheep = self.get_sheep(id)
+        if sheep is None:
+            return None
+        return self.data.pop(id)
+
 db = FakeDB()
 db.data = {
     1: Sheep(id=1, name="Spice", breed="Gotland", sex="ewe"),

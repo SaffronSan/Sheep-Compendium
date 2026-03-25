@@ -19,3 +19,8 @@ def delete_sheep(id: int):
     if sheep is None:
         raise HTTPException(status_code=404, detail="Sheep not found")
     return sheep
+
+@app.put("/sheep/{id}", response_model=Sheep,tags=["Sheep"])
+def update_sheep(id: int, new_sheep: Sheep):
+    db.update_sheep(id, new_sheep)
+    return new_sheep

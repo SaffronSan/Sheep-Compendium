@@ -36,3 +36,14 @@ def test_delete_sheep():
     response = client.delete("/sheep/1")
     assert response.status_code == 200
     assert response.json() == delete_sheep
+
+def test_update_sheep():
+    update_sheep = {
+      "id": 1,
+      "name": "Spice-Update",
+      "breed": "Gotland",
+      "sex": "ewe"
+    }
+    response = client.put("/sheep/1", json=update_sheep)
+    assert response.status_code == 200
+    assert response.json() == update_sheep

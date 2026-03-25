@@ -19,6 +19,14 @@ class FakeDB():
             return None
         return self.data.pop(id)
 
+    def update_sheep(self,id:int,sheepUpdate: Sheep):
+        sheep = self.get_sheep(id)
+        if sheep is None:
+            return None
+        self.data.update(sheepUpdate.data)
+        return sheep
+
+
 db = FakeDB()
 db.data = {
     1: Sheep(id=1, name="Spice", breed="Gotland", sex="ewe"),

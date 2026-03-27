@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from main import app
-
+from models.db import db
 client = TestClient(app)
 
 def test_read_sheep():
@@ -47,3 +47,9 @@ def test_update_sheep():
     response = client.put("/sheep/1", json=update_sheep)
     assert response.status_code == 200
     assert response.json() == update_sheep
+
+def test_read_all_sheep():
+    response = client.get("/sheep/")
+    print(response.json())
+    assert response.status_code == 200
+    assert response.json() == db

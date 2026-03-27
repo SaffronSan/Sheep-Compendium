@@ -26,6 +26,9 @@ class FakeDB():
         self.data.update(sheepUpdate.data)
         return sheep
 
+    def get_all_sheep(self):
+        return self.data
+
 
 db = FakeDB()
 db.data = {

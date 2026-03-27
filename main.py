@@ -1,7 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from models.db import db
 from models.models import Sheep
-
 app = FastAPI()
 
 @app.get("/sheep/{id}", response_model=Sheep, tags=["Sheep"])
@@ -24,3 +23,7 @@ def delete_sheep(id: int):
 def update_sheep(id: int, new_sheep: Sheep):
     db.update_sheep(id, new_sheep)
     return new_sheep
+
+@app.get("/sheep/", response_model=list[Sheep],tags=["Sheep"])
+def read_all_sheep():
+    return list(db.get_all_sheep().values())
